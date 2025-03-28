@@ -5,10 +5,50 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+
+  /* Override Bootstrap dark theme variables */
+  --bs-dark: var(--nat-navbar-bg);
+  --bs-dark-rgb: var(--nat-navbar-bg-rgb);
 }
+
 .wrapper {
   box-sizing: border-box;
   min-height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* Set up CSS variables for theming */
+:root {
+  --nat-navbar-bg: #0B3D91; /* Dark blue */
+  --nat-navbar-bg-rgb: 11, 61, 145;
+  --nat-navbar-text-color: white; /* Light text */
+  --nat-navbar-highlight-text: khaki; /* Highlight color */
+}
+
+/* Apply navbar styles */
+body .navbar {
+  --bs-navbar-active-color: var(--nat-navbar-highlight-text);
+  --bs-navbar-brand-color: var(--nat-navbar-text-color);
+  --bs-navbar-brand-hover-color: var(--nat-navbar-highlight-text);
+  --bs-navbar-color: var(--nat-navbar-text-color);
+  --bs-navbar-hover-color: var(--nat-navbar-highlight-text);
+  background-color: var(--nat-navbar-bg) !important;
+}
+
+/* Style footer */
+footer, footer a {
+  color: var(--nat-navbar-text-color);
+  background-color: var(--nat-navbar-bg) !important;
+}
+
+/* Change background */
+body {
+  background: fixed center url("/images/your-image.jpg");
+  background-size: cover;
+}
+
+/* Fix dropdown menu text */
+.bg-dark a.dropdown-item {
+  color: var(--nat-navbar-bg);
 }
