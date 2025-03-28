@@ -1,12 +1,10 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { PeopleFill, FileEarmarkTextFill, Calendar2CheckFill } from 'react-bootstrap-icons';
 
-/** The Home page. */
 const Home = () => (
   <main>
     <Container id="landing-page" className="py-5">
       <Row className="text-center">
-        {/* First Column - People Icon */}
         <Col>
           <PeopleFill size={100} />
           <h1>Manage Your Contacts</h1>
@@ -16,7 +14,6 @@ const Home = () => (
           </h5>
         </Col>
 
-        {/* Second Column - File Icon */}
         <Col>
           <FileEarmarkTextFill size={100} />
           <h1>Save Contact Details</h1>
@@ -25,7 +22,6 @@ const Home = () => (
           </h5>
         </Col>
 
-        {/* Third Column - Calendar Icon */}
         <Col>
           <Calendar2CheckFill size={100} />
           <h1>Track Interactions</h1>
