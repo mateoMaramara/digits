@@ -5,6 +5,8 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  background: fixed center url("/bkrn.png");
+  background-size: cover;
 
   /* Override Bootstrap dark theme variables */
   --bs-dark: var(--nat-navbar-bg);
@@ -41,13 +43,6 @@ footer, footer a {
   color: var(--nat-navbar-text-color);
   background-color: var(--nat-navbar-bg) !important;
 }
-
-/* Change background */
-body {
-  background: fixed center url("/images/your-image.jpg");
-  background-size: cover;
-}
-
 /* Fix dropdown menu text */
 .bg-dark a.dropdown-item {
   color: var(--nat-navbar-bg);
