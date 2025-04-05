@@ -1,11 +1,13 @@
 'use client';
 
-import { Card } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 import Link from 'next/link';
-import { Contact } from '@prisma/client'; // make sure Contact includes `id`
+import { Contact, Note } from '@prisma/client';
+import NoteItem from './NoteItem';
+import AddNoteForm from './AddNoteForm'; // ✅ Import the form
 
-/** Renders a contact card with name, image, address, description, and edit link */
-const ContactCard = ({ contact }: { contact: Contact }) => (
+/** Renders a contact card with notes and an edit link */
+const ContactCard = ({ contact, notes }: { contact: Contact; notes: Note[] }) => (
   <Card className="h-100 shadow-sm">
     <Card.Header className="text-center">
       <Card.Img
@@ -15,6 +17,7 @@ const ContactCard = ({ contact }: { contact: Contact }) => (
         style={{ width: '75px', borderRadius: '50%' }}
       />
     </Card.Header>
+
     <Card.Body>
       <Card.Title>
         {contact.firstName}
@@ -22,7 +25,18 @@ const ContactCard = ({ contact }: { contact: Contact }) => (
       </Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{contact.address}</Card.Subtitle>
       <Card.Text>{contact.description}</Card.Text>
+
+      {/* 🔽 Notes List */}
+      <ListGroup variant="flush" className="mt-3 mb-3">
+        {notes.map((note) => (
+          <NoteItem key={note.id} note={note} />
+        ))}
+      </ListGroup>
+
+      {/* 📝 Add Note Form */}
+      <AddNoteForm contactId={contact.id} />
     </Card.Body>
+
     <Card.Footer>
       <Link href={`/edit/${contact.id}`}>Edit</Link>
     </Card.Footer>

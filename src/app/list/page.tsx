@@ -4,6 +4,7 @@ import { loggedInProtectedPage } from '@/lib/page-protection';
 import authOptions from '@/lib/authOptions';
 import ContactCard from '@/components/ContactCard';
 import { prisma } from '@/lib/prisma';
+import { Note } from '@prisma/client';
 
 /** Render a list of contacts for the logged-in user. */
 const ListPage = async () => {
@@ -14,9 +15,14 @@ const ListPage = async () => {
   // Get the logged-in user's email
   const ownerEmail = session?.user?.email || '';
 
-  // Fetch only the contacts that belong to the logged-in user
+  // Fetch the user's contacts
   const contacts = await prisma.contact.findMany({
-    where: { owner: ownerEmail }, // Filters contacts based on the current user
+    where: { owner: ownerEmail },
+  });
+
+  // 🔄 Fetch all notes belonging to the current user
+  const notes: Note[] = await prisma.note.findMany({
+    where: { owner: ownerEmail },
   });
 
   return (
@@ -34,7 +40,10 @@ const ListPage = async () => {
           {contacts.length > 0 ? (
             contacts.map((contact) => (
               <Col key={`Contact-${contact.id}`}>
-                <ContactCard contact={contact} />
+                <ContactCard
+                  contact={contact}
+                  notes={notes.filter((note) => note.contactId === contact.id)}
+                />
               </Col>
             ))
           ) : (

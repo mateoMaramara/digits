@@ -1,10 +1,11 @@
 'use client';
 
-import { Card } from 'react-bootstrap';
-import { Contact } from '@/lib/validationSchemas';
+import { Card, ListGroup } from 'react-bootstrap';
+import { Contact, Note } from '@prisma/client';
+import NoteItem from './NoteItem';
 
-/** Renders an admin contact card with the owner's email */
-const ContactCardAdmin = ({ contact }: { contact: Contact }) => (
+/** Renders an admin contact card with notes and the owner's email */
+const ContactCardAdmin = ({ contact, notes }: { contact: Contact; notes: Note[] }) => (
   <Card className="h-100 shadow-sm">
     <Card.Header className="text-center">
       <Card.Img
@@ -21,8 +22,16 @@ const ContactCardAdmin = ({ contact }: { contact: Contact }) => (
       </Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{contact.address}</Card.Subtitle>
       <Card.Text>{contact.description}</Card.Text>
-      {/* ✅ Show Owner Email */}
+
+      {/* 📌 Owner Info */}
       <p className="blockquote-footer">{contact.owner}</p>
+
+      {/* 🔽 Display Notes */}
+      <ListGroup variant="flush" className="mt-3">
+        {notes.map((note) => (
+          <NoteItem key={note.id} note={note} />
+        ))}
+      </ListGroup>
     </Card.Body>
   </Card>
 );
