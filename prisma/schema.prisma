@@ -23,13 +23,14 @@ model Stuff {
 }
 
 model Contact {
-  id          Int    @id @default(autoincrement())
-  firstName   String
-  lastName    String
-  address     String
-  image       String
-  description String
-  owner       String
+    id          Int    @id @default(autoincrement())
+    firstName   String
+    lastName    String
+    address     String
+    image       String
+    description String
+    notes       Note[]
+    owner       String
 }
 
 enum Role {
@@ -42,4 +43,13 @@ enum Condition {
   good
   fair
   poor
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  contactId Int
+  note      String
+  owner     String
+  createdAt DateTime @default(now())
+  Contact   Contact  @relation(fields: [contactId], references: [id])
 }
