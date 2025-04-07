@@ -5,7 +5,13 @@ import { Contact, Note } from '@prisma/client';
 import NoteItem from './NoteItem';
 
 /** Renders an admin contact card with notes and the owner's email */
-const ContactCardAdmin = ({ contact, notes }: { contact: Contact; notes: Note[] }) => (
+const ContactCardAdmin = ({
+  contact,
+  notes = [], // ✅ default to an empty array
+}: {
+  contact: Contact;
+  notes?: Note[]; // ✅ make notes optional
+}) => (
   <Card className="h-100 shadow-sm">
     <Card.Header className="text-center">
       <Card.Img
@@ -17,8 +23,7 @@ const ContactCardAdmin = ({ contact, notes }: { contact: Contact; notes: Note[] 
     </Card.Header>
     <Card.Body>
       <Card.Title>
-        {contact.firstName}
-        {contact.lastName}
+        {contact.firstName} {contact.lastName}
       </Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{contact.address}</Card.Subtitle>
       <Card.Text>{contact.description}</Card.Text>
