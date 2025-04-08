@@ -10,6 +10,7 @@ const ContactCardAdmin = ({
   notes = [], // ✅ default to an empty array
 }: {
   contact: Contact;
+  // eslint-disable-next-line react/require-default-props
   notes?: Note[]; // ✅ make notes optional
 }) => (
   <Card className="h-100 shadow-sm">
@@ -23,7 +24,8 @@ const ContactCardAdmin = ({
     </Card.Header>
     <Card.Body>
       <Card.Title>
-        {contact.firstName} {contact.lastName}
+        {contact.firstName}
+        {contact.lastName}
       </Card.Title>
       <Card.Subtitle className="mb-2 text-muted">{contact.address}</Card.Subtitle>
       <Card.Text>{contact.description}</Card.Text>
