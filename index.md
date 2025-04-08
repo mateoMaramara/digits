@@ -1,6 +1,6 @@
 ### Digits Management System
 
-<img width="600px" class="rounded d-block mx-auto my-4" src="../img/DIGIT1.png">
+<img width="600px" class="rounded d-block mx-auto my-4" src="doc/Landing.png">
 
 **Digits** is a contacts and notes management application I built. Users can log in securely, add new contacts with details like name, address, image, and description, and attach notes to each contact to track interactions or personal reminders.
 
